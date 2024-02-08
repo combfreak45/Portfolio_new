@@ -11,7 +11,7 @@ const bodyParser = require("body-parser");
 connect()
 app.use(
   cors({
-    origin: ["http://localhost:5173", "http://localhost:5174"],
+    origin: ["http://localhost:5173", "http://localhost:5174","https://adminportfolio.vercel.app"],
     methods: ["GET", "POST", "PATCH", "DELETE"],
   })
 );
