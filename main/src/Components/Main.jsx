@@ -43,7 +43,6 @@ const Main = () => {
               />
             </path>
           </svg>
-          <p>Loading...</p>
         </div>
       ) : (
         <div>
