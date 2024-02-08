@@ -15,7 +15,7 @@ const Project = () => {
   const fetchprojects = async () => {
      
     try {
-        const project = await axios.get("http://localhost:5000/project")
+        const project = await axios.get("https://portfolio-new-ashen-kappa.vercel.app/project")
 
         setProjectList(project.data.projects)
     } catch (error) {
@@ -27,7 +27,7 @@ const Project = () => {
 
   const handleDelete = async (project_name) => {
     try {
-      await axios.delete(`http://localhost:5000/project/${project_name}`);
+      await axios.delete(`https://portfolio-new-ashen-kappa.vercel.app/project/${project_name}`);
       setProjectList((prevProject) => prevProject.filter((s) => s.project_name !== project_name));
 
     } catch (error) {
@@ -37,7 +37,7 @@ const Project = () => {
 
   const handleAddProject = async () =>{
      try {
-       const response = await axios.post("http://localhost:5000/project", {
+       const response = await axios.post("https://portfolio-new-ashen-kappa.vercel.app/project", {
          project_name:name,
          photo,
          github,
