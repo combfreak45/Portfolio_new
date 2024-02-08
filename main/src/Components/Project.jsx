@@ -7,7 +7,7 @@ const Project = () => {
   useEffect(() => {
     const getProjects = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/project/");
+        const response = await axios.get("https://portfolio-new-ashen-kappa.vercel.app/project");
         console.log(response.data);
         if (response.data.message === "ok") {
           setData(response.data.projects);
