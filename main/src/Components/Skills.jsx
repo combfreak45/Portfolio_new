@@ -8,7 +8,9 @@ const Skills = () => {
   useEffect(() => {
     const getData = async () => {
       try {
-        const response = await axios.get("https://portfolio-new-ashen-kappa.vercel.app/skill");
+        const response = await axios.get(
+          "https://portfolio-new-ashen-kappa.vercel.app/skill"
+        );
         if (response.data.message === "ok") {
           setData(response.data.skills);
         } else {
@@ -22,10 +24,10 @@ const Skills = () => {
     getData();
   }, []);
   return (
-    <motion.div className="  min-h-screen m-5 rounded-2xl flex flex-row  flex-wrap gap-5 sm:p-20 justify-center text-[#FFDD95]">
+    <motion.div className="  min-h-screen m-5 rounded-2xl flex flex-row  flex-wrap gap-5 sm:p-20 justify-center text-white">
       {data.map((item) => (
         <div
-          className="p-2 border-[#3468C0] border-4 bg-[#86A7FC] w-[15rem] sm:w-[20rem] h-[10rem] flex items-center justify-center text-3xl rounded-3xl hover:scale-125 hover:cursor-pointer hover:bg-[#FF9843] hover:border-[#3468C0] hover:text-[#3468C0]"
+          className="p-2  border-4  w-[15rem] sm:w-[20rem] h-[10rem] flex items-center justify-center text-3xl rounded-3xl hover:scale-125 hover:cursor-pointer hover:bg-white  hover:text-black"
           key={item._id}
         >
           {item.skill}

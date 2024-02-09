@@ -23,7 +23,7 @@ const Main = () => {
   return (
     <div className="h-screen">
       {isLoading ? (
-        <div className="flex justify-center items-center h-full">
+        <div className="flex justify-center items-center h-full text-white">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="100"
@@ -47,6 +47,7 @@ const Main = () => {
       ) : (
         <div>
           <Spline
+            className="max-h-screen"
             style={{ display: "block" }}
             scene="https://prod.spline.design/HdCy3nN4QYWNODsN/scene.splinecode"
           />

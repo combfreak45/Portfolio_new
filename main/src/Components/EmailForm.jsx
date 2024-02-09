@@ -40,21 +40,21 @@ const EmailForm = () => {
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-3 w-[20rem]">
       <input
-        className="rounded-lg p-1 border-3 bg-[#FF9843]"
+        className="rounded-lg p-1 border-3 bg-white"
         type="text"
         placeholder="Your Name"
         value={name}
         onChange={(e) => setName(e.target.value)}
       />
       <input
-        className="rounded-lg  p-1 border-3 bg-[#FF9843]"
+        className="rounded-lg  p-1 border-3 bg-white"
         type="email"
         placeholder="Your Email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
       />
       <textarea
-        className="rounded-lg  p-1 border-3 bg-[#FF9843]"
+        className="rounded-lg  p-1 border-3 bg-white"
         cols="5"
         rows="5"
         placeholder="message"
@@ -63,7 +63,7 @@ const EmailForm = () => {
       ></textarea>
       <button
         type="submit"
-        className="rounded-lg  p-1 border-3 bg-[#FF9843] text-[#3468C0] text-xl"
+        className="rounded-lg  p-1 border-3 bg-white text-[#3468C0] text-xl"
       >
         Send Email
       </button>

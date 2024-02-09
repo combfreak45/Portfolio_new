@@ -4,7 +4,7 @@ import profile from "../profile1.png";
 import { easeOut, motion } from "framer-motion";
 const Home = () => {
   return (
-    <motion.div className="xl:h-full p-5 text-[#3468C0]">
+    <motion.div className="xl:h-full p-5 text-white">
       <motion.div className="h-fit flex flex-row items-center flex-wrap rounded-3xl">
         <motion.div
           className="w-full xl:w-2/5 h-1/2 flex flex-col items-center overflow-hidden rounded-3xl"
@@ -35,7 +35,7 @@ const Home = () => {
           <motion.div className="text-[2rem] sm:text-[5rem] xl:text-[8rem] 2xl:text-[10rem] font-bold">
             Arjit Kedia
           </motion.div>
-          <motion.div className=" text-2xl sm:text-4xl xl:text-6xl 2xl:text-8xl font-bold text-[#86A7FC]">
+          <motion.div className=" text-2xl sm:text-4xl xl:text-6xl 2xl:text-8xl font-bold text-red-400">
             <TypeAnimation
               sequence={["I'm a Developer", 1000, "I'm a Designer", 1000]}
               speed={10}

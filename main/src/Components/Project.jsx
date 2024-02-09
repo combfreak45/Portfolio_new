@@ -7,7 +7,9 @@ const Project = () => {
   useEffect(() => {
     const getProjects = async () => {
       try {
-        const response = await axios.get("https://portfolio-new-ashen-kappa.vercel.app/project");
+        const response = await axios.get(
+          "https://portfolio-new-ashen-kappa.vercel.app/project"
+        );
         console.log(response.data);
         if (response.data.message === "ok") {
           setData(response.data.projects);
@@ -37,17 +39,17 @@ const Project = () => {
               />
             </div>
 
-            <div className="flex flex-col justify-start rounded-3xl text-[#3468C0] w-[35rem] min-h-[12rem] px-10 py-5 bg-[#FF9843] gap-2">
+            <div className="flex flex-col justify-start rounded-3xl text-black  bg-white w-[35rem] min-h-[12rem] px-10 py-5 gap-2">
               <div className="text-xl sm:text-3xl font-bold">
                 {item.project_name}
               </div>
-              <div className="font-thin bg-[#FFDD95] rounded-md p-2 ">
+              <div className="font-thin  rounded-md p-2 ">
                 {item.description}
               </div>
-              <div className="w-20 bg-[#FFDD95] text-center rounded-md  hover:scale-125">
+              <div className="w-20  text-center text-white bg-black rounded-md  hover:scale-125">
                 <a href={item.github}>GitHub</a>
               </div>
-              <div className="w-20 bg-[#FFDD95] text-center rounded-md hover:scale-125">
+              <div className="w-20  text-center text-white bg-black rounded-md hover:scale-125">
                 <a href={item.host}>Host</a>
               </div>
             </div>

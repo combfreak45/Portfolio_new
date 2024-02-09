@@ -10,7 +10,7 @@ const Header = () => {
   return (
     <>
       <motion.div
-        className="h-[10%] bg-[#FF9843] text-[#3468C0] m-5 rounded-2xl text-2xl font-bold flex flex-row flex-wrap justify-between items-center px-10"
+        className="h-[10%]  text-white m-5 rounded-2xl text-2xl font-bold flex flex-row flex-wrap justify-between items-center px-10"
         initial={{ y: -200 }}
         animate={{ y: 0 }}
         transition={{ delay: 0.2, duration: 2, type: "spring", stiffness: 50 }}
