@@ -30,7 +30,7 @@ const Header = () => {
               <Link to="/portfolio/project">Projects</Link>
             </div>
             <div className="hover:cursor-pointer hover:scale-125">
-              <Link to="/portfolio/contact">Contact Us</Link>
+              <Link to="/portfolio/contact">Contact Me</Link>
             </div>
           </div>
         </div>
@@ -45,7 +45,7 @@ const Header = () => {
               <Link to="/portfolio/project">Projects</Link>
             </div>
             <div className="hover:cursor-pointer">
-              <Link to="/portfolio/contact">Contact Us</Link>
+              <Link to="/portfolio/contact">Contact Me</Link>
             </div>
           </div>
         ) : (
