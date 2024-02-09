@@ -44,7 +44,7 @@ const Home = () => {
           </motion.div>
           <motion.div>
             <p className="text-[.6rem] sm:text-2xl xl:text-4xl font-bold">
-              Third year student at NIT Kurukshetra
+             CSE undergraduate at NIT Kurukshetra 
             </p>
           </motion.div>
           <motion.div className="flex flex-row gap-1 mt-5 ">
