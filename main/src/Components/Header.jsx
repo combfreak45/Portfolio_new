@@ -37,7 +37,7 @@ const Header = () => {
       </motion.div>
       <div>
         {visible ? (
-          <div className="flex flex-col  gap-5 bg-[#FF9843] mx-5 py-4 px-10 rounded-xl text-lg font-bold text-[#3468C0] ">
+          <div className="flex flex-col  gap-5  mx-5 py-4 px-10 rounded-xl text-lg font-bold text-white">
             <div className="hover:cursor-pointer ">
               <Link to="/portfolio/skill">Skills</Link>
             </div>
