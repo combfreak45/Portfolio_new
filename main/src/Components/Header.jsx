@@ -16,7 +16,7 @@ const Header = () => {
         transition={{ delay: 0.2, duration: 2, type: "spring", stiffness: 50 }}
       >
         <div className="hover:cursor-pointer hover:scale-125 text-2xl">
-          <Link to="/portfolio/">Portfolio</Link>
+          <Link to="/">Portfolio</Link>
         </div>
         <div className=" block sm:hidden" onClick={() => setVisible(!visible)}>
           {visible ? <RxCross1 /> : <GiHamburgerMenu />}
@@ -24,13 +24,13 @@ const Header = () => {
         <div className=" hidden sm:block">
           <div className="flex flex-row flex-wrap gap-5">
             <div className="hover:cursor-pointer hover:scale-125">
-              <Link to="/portfolio/skill">Skills</Link>
+              <Link to="/skill">Skills</Link>
             </div>
             <div className="hover:cursor-pointer hover:scale-125">
-              <Link to="/portfolio/project">Projects</Link>
+              <Link to="/project">Projects</Link>
             </div>
             <div className="hover:cursor-pointer hover:scale-125">
-              <Link to="/portfolio/contact">Contact Me</Link>
+              <Link to="/contact">Contact Me</Link>
             </div>
           </div>
         </div>
