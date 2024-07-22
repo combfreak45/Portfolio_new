@@ -1,6 +1,5 @@
 const Project = require('../databse/projectmodel')
 
-
 const getProjects = async (req, res) => {
   try {
 
@@ -14,14 +13,20 @@ const getProjects = async (req, res) => {
 
 const createproject = async (req, res) => {
   try {
-    const { project_name,photo,github,host,description } = req.body;
+    const { 
+      project_name,
+      github,
+      host,
+      description } = req.body;
+
+      const photo = req.file?.path;
 
     if (
-      project_name === "" ||
+      !project_name  ||
       typeof project_name !== "string" ||
-      photo === "" ||
+      !photo  ||
       typeof photo !== "string" ||
-      description === "" ||
+      !description  ||
       typeof description !== "string"
     ) {
       return res.status(400).json({ message: "provide correct input" });
@@ -39,13 +44,14 @@ const createproject = async (req, res) => {
 
     return res.status(201).json({ message: "ok", project_name: project.project_name });
   } catch (error) {
-    console.log(error);
+    console.log("hi" + error);
   }
 };
 
 const updateproject = async (req, res) => {
   try {
-    const { project_name, photo, github, host, description } = req.body;
+    const { project_name, github, host, description } = req.body;
+     const photo = req.file?.path;
 
     if (
       project_name === "" ||
