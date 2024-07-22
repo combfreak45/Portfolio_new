@@ -43,6 +43,7 @@ const Project = () => {
      formData.append("github", github);
      formData.append("host", host);
      formData.append("description", description);
+     console.log(formData);
 
      try {
        const response = await axios.post(
@@ -53,7 +54,7 @@ const Project = () => {
            },
          }
        );
-
+       console.log(response);
        setProjectList((prevProjects) => [...prevProjects, response.data.projects]);
 
        setName("");
@@ -76,7 +77,7 @@ const Project = () => {
             <div id={p._id} className="flex flex-row gap-10 items-center">
               <div>{p.project_name}</div>
               <img
-                src={`https://portfolio-new-ashen-kappa.vercel.app/${p.photo}`}
+                src={p.photo}
                 alt={p.project_name}
                 width={200}
                 height={200}
@@ -120,7 +121,7 @@ const Project = () => {
             className="border-black border-2"
             type="file"
             id="photo"
-            onChange={(e) => setPhoto(e.target.value)}
+            onChange={(e) => setPhoto(e.target.files[0])}
           />
           <label htmlFor="github">GitHub</label>
           <input

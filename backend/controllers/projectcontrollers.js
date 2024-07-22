@@ -1,4 +1,14 @@
+const cloudinary = require("cloudinary").v2;
 const Project = require('../databse/projectmodel')
+require("dotenv").config();
+
+
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+  secure: true,
+});
 
 const getProjects = async (req, res) => {
   try {
@@ -13,36 +23,61 @@ const getProjects = async (req, res) => {
 
 const createproject = async (req, res) => {
   try {
+
     const { 
       project_name,
       github,
       host,
       description } = req.body;
 
-      const photo = req.file?.path;
+      const photodata = req.file;
 
     if (
-      !project_name  ||
+      !project_name ||
       typeof project_name !== "string" ||
-      !photo  ||
-      typeof photo !== "string" ||
-      !description  ||
+      !description ||
       typeof description !== "string"
     ) {
       return res.status(400).json({ message: "provide correct input" });
     }
 
+    if (!photodata) {
+      return res.status(400).json({ error: "No file uploaded" });
+     }
+
     const duplicate = await Project.findOne({ project_name });
 
     if (duplicate) return res.status(401).json("project already there");
 
+    let result;
+
+    try {
+       result = await cloudinary.uploader.upload(
+        req.file.path,
+        { folder: "project",resource_type : "image" 
+        }
+      );
+    } catch (error) {
+      res.status(500);
+      console.log("here", error);
+      throw new Error("Image could not be uploaded");
+    }
+    
+
     const project = new Project({
-      project_name,photo,github,host,description
+      project_name,
+      photo: result.secure_url,
+      github,
+      host,
+      description,
     });
 
     await project.save();
 
-    return res.status(201).json({ message: "ok", project_name: project.project_name });
+    return res
+      .status(201)
+      .json({ message: "ok", project_name: project.project_name });
+
   } catch (error) {
     console.log("hi" + error);
   }
@@ -51,23 +86,33 @@ const createproject = async (req, res) => {
 const updateproject = async (req, res) => {
   try {
     const { project_name, github, host, description } = req.body;
-     const photo = req.file?.path;
+     const photo = req.file;
 
     if (
       project_name === "" ||
       typeof project_name !== "string" ||
-      photo === "" ||
-      typeof photo !== "string" ||
       description === "" ||
       typeof description !== "string"
     ) {
       return res.status(400).json({ message: "provide correct input" });
     }
 
+    if (!photo) {
+      return res.status(400).json({ error: "No file uploaded" });
+    }
+    
+    const result = await new Promise((resolve, reject) => {
+      cloudinary.uploader
+        .upload_stream({ folder: "project" }, (error, result) => {
+          if (error) reject(error);
+          else resolve(result);
+        })
+        .end(photo.buffer);
+    });
 
     await Project.updateOne({
       project_name,
-      photo,
+      photo : result.secure_url,
       github,
       host,
       description,

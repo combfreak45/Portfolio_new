@@ -17,10 +17,11 @@ app.use(
   })
 );
 app.use(bodyParser.json());
-app.use('/uploads',express.static('uploads'))
 app.get('/',(req,res)=>{
   res.sendFile(path.join(__dirname, "index.html"));
 })
+app.use("/uploads", express.static(__dirname + "/uploads"));
+
 app.use('/skill',skillRouter)
 app.use('/project',projectRoute)
 
