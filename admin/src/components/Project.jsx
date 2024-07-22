@@ -5,7 +5,7 @@ const Project = () => {
 
   const [projectList,setProjectList] = useState([])
   const [name,setName] = useState("")
-  const [photo,setPhoto] = useState("")
+  const [photo,setPhoto] = useState(null)
   const [github,setGithub] = useState("")
   const [host,setHost] = useState("")
   const [description,setDescription] = useState("")
@@ -36,19 +36,28 @@ const Project = () => {
   };
 
   const handleAddProject = async () =>{
+
+     const formData = new FormData();
+     formData.append("project_name", name);
+     formData.append("photo", photo);
+     formData.append("github", github);
+     formData.append("host", host);
+     formData.append("description", description);
+
      try {
-       const response = await axios.post("https://portfolio-new-ashen-kappa.vercel.app/project", {
-         project_name:name,
-         photo,
-         github,
-         host,
-         description
-       });
+       const response = await axios.post(
+         "https://portfolio-new-ashen-kappa.vercel.app/project",formData,
+         {
+           headers: {
+             "Content-Type": "multipart/form-data",
+           },
+         }
+       );
 
        setProjectList((prevProjects) => [...prevProjects, response.data.projects]);
 
        setName("");
-       setPhoto("");
+       setPhoto(null);
        setGithub("");
        setHost("");
        setDescription("");
@@ -67,7 +76,7 @@ const Project = () => {
             <div id={p._id} className="flex flex-row gap-10 items-center">
               <div>{p.project_name}</div>
               <img
-                src={p.photo}
+                src={`https://portfolio-new-ashen-kappa.vercel.app/${p.photo}`}
                 alt={p.project_name}
                 width={200}
                 height={200}
@@ -109,9 +118,8 @@ const Project = () => {
           <label htmlFor="photo">Photo Link</label>
           <input
             className="border-black border-2"
-            type="text"
+            type="file"
             id="photo"
-            value={photo}
             onChange={(e) => setPhoto(e.target.value)}
           />
           <label htmlFor="github">GitHub</label>
