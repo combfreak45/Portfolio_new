@@ -2,6 +2,7 @@ const express = require("express");
 const {default: mongoose } = require("mongoose");
 const connect = require("./databse/connection");
 const skillRouter = require("./routes/skillRoutes");
+const path = require("path");
 const projectRoute = require("./routes/projectRoutes");
 const app = express();
 app.use(express.json());
@@ -16,6 +17,10 @@ app.use(
   })
 );
 app.use(bodyParser.json());
+app.use('/uploads',express.static('uploads'))
+app.get('/',(req,res)=>{
+  res.sendFile(path.join(__dirname, "index.html"));
+})
 app.use('/skill',skillRouter)
 app.use('/project',projectRoute)
 
