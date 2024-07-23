@@ -4,7 +4,7 @@ import axios from 'axios'
 const Project = () => {
 
   const [projectList,setProjectList] = useState([])
-  const [name,setName] = useState("")
+  const [project_name,setProject_name] = useState("")
   const [photo,setPhoto] = useState(null)
   const [github,setGithub] = useState("")
   const [host,setHost] = useState("")
@@ -37,34 +37,38 @@ const Project = () => {
 
   const handleAddProject = async () =>{
 
+
      const formData = new FormData();
-     formData.append("project_name", name);
+     formData.append("project_name", project_name);
      formData.append("photo", photo);
      formData.append("github", github);
      formData.append("host", host);
      formData.append("description", description);
-     console.log(formData);
+    //  console.log(formData);
+
+    for (let pair of formData.entries()) {
+      console.log(pair[0] + ": " + pair[1]);
+    }
 
      try {
        const response = await axios.post(
-         "https://portfolio-new-ashen-kappa.vercel.app/project",formData,
-         {
-           headers: {
-             "Content-Type": "multipart/form-data",
-           },
-         }
+         "https://portfolio-new-ashen-kappa.vercel.app/project",
+         formData
        );
-       console.log(response);
        setProjectList((prevProjects) => [...prevProjects, response.data.projects]);
 
-       setName("");
+       setProject_name("");
        setPhoto(null);
        setGithub("");
        setHost("");
        setDescription("");
 
      } catch (error) {
-       console.error("Error adding project:", error);
+      //  console.error("Error adding project:", error);
+      console.error(
+        "Error adding project:",
+        error.response ? error.response.data : error.message
+      );
      }
   }
 
@@ -113,8 +117,8 @@ const Project = () => {
             className="border-black border-2"
             type="text"
             id="name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            value={project_name}
+            onChange={(e) => setProject_name(e.target.value)}
           />
           <label htmlFor="photo">Photo Link</label>
           <input

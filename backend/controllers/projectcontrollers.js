@@ -21,16 +21,17 @@ const getProjects = async (req, res) => {
   }
 };
 
+
 const createproject = async (req, res) => {
   try {
-
-    const { 
+      const { 
       project_name,
       github,
       host,
       description } = req.body;
 
-      const photodata = req.file;
+      const b64 = Buffer.from(req.file.buffer).toString("base64");
+      let dataURI = "data"+req.file.mimetype + ";base64" +b64;
 
     if (
       !project_name ||
@@ -41,9 +42,6 @@ const createproject = async (req, res) => {
       return res.status(400).json({ message: "provide correct input" });
     }
 
-    if (!photodata) {
-      return res.status(400).json({ error: "No file uploaded" });
-     }
 
     const duplicate = await Project.findOne({ project_name });
 
@@ -53,13 +51,13 @@ const createproject = async (req, res) => {
 
     try {
        result = await cloudinary.uploader.upload(
-        req.file.path,
-        { folder: "project",resource_type : "image" 
+        dataURI,
+        { folder: "project",resource_type : "auto" 
         }
       );
     } catch (error) {
       res.status(500);
-      console.log("here", error);
+      console.log("Image upload error:", error);
       throw new Error("Image could not be uploaded");
     }
     
@@ -79,7 +77,8 @@ const createproject = async (req, res) => {
       .json({ message: "ok", project_name: project.project_name });
 
   } catch (error) {
-    console.log("hi" + error);
+     console.log("Create project error:", error);
+     res.status(500).json({ message: "Internal server error" });
   }
 };
 
