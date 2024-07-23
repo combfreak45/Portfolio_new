@@ -16,7 +16,6 @@ const storage = new multer.memoryStorage();
 // });
 
 const upload = multer({ storage });
-
 projectRoute.route('/').get(getProjects)
 
 projectRoute.post("/",upload.single('photo'),createproject)
