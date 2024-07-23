@@ -22,5 +22,5 @@ experienceRoute.route("/").get(getExperience);
 
 experienceRoute.post("/", upload.single("photo"), createExperience);
 // experienceRoute.patch("/", upload.single("photo"), updateExperience);
-experienceRoute.route("/:name").delete(deleteExperience);
+experienceRoute.route("/:company_name").delete(deleteExperience);
 module.exports = experienceRoute;
