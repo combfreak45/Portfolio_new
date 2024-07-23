@@ -16,13 +16,16 @@ const Header = () => {
         transition={{ delay: 0.2, duration: 2, type: "spring", stiffness: 50 }}
       >
         <div className="hover:cursor-pointer hover:scale-125 text-2xl">
-          <Link to="/">Portfolio</Link>
+          <Link to="/">Home</Link>
         </div>
         <div className=" block sm:hidden" onClick={() => setVisible(!visible)}>
           {visible ? <RxCross1 /> : <GiHamburgerMenu />}
         </div>
         <div className=" hidden sm:block">
-          <div className="flex flex-row flex-wrap gap-5">
+          <div className="flex flex-row flex-wrap gap-8">
+          <div className="hover:cursor-pointer hover:scale-125">
+              <Link to="/experience">Experience</Link>
+            </div>
             <div className="hover:cursor-pointer hover:scale-125">
               <Link to="/skill">Skills</Link>
             </div>

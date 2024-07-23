@@ -9,7 +9,7 @@ const Skills = () => {
     const getData = async () => {
       try {
         const response = await axios.get(
-          "https://portfolio-new-rust-ten.vercel.app/skill"
+          "https://portfolio-new-arjits-projects-4f88e43c.vercel.app/skill"
         );
         if (response.data.message === "ok") {
           setData(response.data.skills);
