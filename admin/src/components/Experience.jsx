@@ -94,10 +94,10 @@ const Experience = () => {
                 height={200}
               />
               <div>
-                <a href={p?.duration}>Github</a>
+                <span>{p?.role}</span>
               </div>
               <div>
-                <a href={p?.role}>Host</a>
+                <span>{p?.duration}</span>
               </div>
               <div>{p?.description}</div>
             </div>

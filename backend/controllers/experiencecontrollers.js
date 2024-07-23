@@ -120,7 +120,7 @@ const deleteExperience = async (req, res) => {
   try {
     const { company_name } = req.params;
 
-    await Project.deleteOne({ company_name: company_name });
+    await Experience.deleteOne({ company_name: company_name });
 
     res.status(200).json({
       message: `${company_name} deleted`,
