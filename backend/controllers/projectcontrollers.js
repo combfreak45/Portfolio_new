@@ -13,7 +13,7 @@ cloudinary.config({
 const getProjects = async (req, res) => {
   try {
 
-    const projects = await Project.find()
+    const projects = await Project.find();
     res.status(200).json({ message: "ok" ,projects});
 
   } catch (error) {

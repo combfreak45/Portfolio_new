@@ -15,8 +15,6 @@ app.use(
     origin: [
       "http://localhost:5173",
       "http://localhost:5174",
-      "https://adminportfolio.vercel.app",
-      "https://arjit-portfolio.vercel.app",
     ],
     methods: ["GET", "POST", "PATCH", "DELETE"],
     allowedHeaders: "Content-Type, Authorization",

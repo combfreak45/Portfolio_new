@@ -9,7 +9,7 @@ const SkillList = () => {
   useEffect(() => {
     const fetchSkills = async () => {
       try {
-        const response = await axios.get("https://portfolio-new-ashen-kappa.vercel.app/skill");
+        const response = await axios.get("http://localhost:5000/skill");
         setSkill(response.data.skills);
       } catch (error) {
         console.error("Error fetching skills:", error);
@@ -21,7 +21,7 @@ const SkillList = () => {
 
    const deleteSkill = async (skill) =>{
     try {
-        await axios.delete(`https://portfolio-new-ashen-kappa.vercel.app/skill/${skill}`);
+        await axios.delete(`http://localhost:5000/skill/${skill}`);
         setSkill((prevSkill) => prevSkill.filter((s) => s.skill !== skill));
     } catch (error) {
         console.log(error);
@@ -30,7 +30,7 @@ const SkillList = () => {
 
    const handleAddSkill = async () => {
      try {
-       const response = await axios.post("https://portfolio-new-ashen-kappa.vercel.app/skill", {
+       const response = await axios.post("http://localhost:5000/skill", {
          skill: newskill,
        });
 
@@ -50,8 +50,8 @@ const SkillList = () => {
         <div className="text-3xl py-3 text-center">Skill List</div>
         <div>
           {skill.map((s) => (
-            <div className="flex flex-row gap-2 text-2xl border-black border-2  m-1 p-2 justify-between items-center">
-              <div key={s._id}>{s.skill}</div>
+            <div key={s?._id} className="flex flex-row gap-2 text-2xl border-black border-2  m-1 p-2 justify-between items-center">
+              <div>{s?.skill}</div>
               <button onClick={() => deleteSkill(s.skill)} className="bg-red-400 p-1">Delete</button>
             </div>
           ))}

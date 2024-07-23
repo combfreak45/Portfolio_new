@@ -15,8 +15,7 @@ const Project = () => {
   const fetchprojects = async () => {
      
     try {
-        const project = await axios.get("https://portfolio-new-ashen-kappa.vercel.app/project")
-
+        const project = await axios.get("http://localhost:5000/project")
         setProjectList(project.data.projects)
     } catch (error) {
         console.log(error);
@@ -27,7 +26,7 @@ const Project = () => {
 
   const handleDelete = async (project_name) => {
     try {
-      await axios.delete(`https://portfolio-new-ashen-kappa.vercel.app/project/${project_name}`);
+      await axios.delete(`http://localhost:5000/project/${project_name}`);
       setProjectList((prevProject) => prevProject.filter((s) => s.project_name !== project_name));
 
     } catch (error) {
@@ -44,7 +43,6 @@ const Project = () => {
      formData.append("github", github);
      formData.append("host", host);
      formData.append("description", description);
-    //  console.log(formData);
 
     for (let pair of formData.entries()) {
       console.log(pair[0] + ": " + pair[1]);
@@ -52,9 +50,13 @@ const Project = () => {
 
      try {
        const response = await axios.post(
-         "https://portfolio-new-ashen-kappa.vercel.app/project",
-         formData
-       );
+         "http://localhost:5000/project",
+         formData, 
+         {
+          headers: {'Content-Type': 'multipart/form-data'}
+  });
+
+     if(response.data.message==="ok"){
        setProjectList((prevProjects) => [...prevProjects, response.data.projects]);
 
        setProject_name("");
@@ -63,12 +65,13 @@ const Project = () => {
        setHost("");
        setDescription("");
 
+     }
+     else{
+      console.log(response.status);
+     }
+
      } catch (error) {
-      //  console.error("Error adding project:", error);
-      console.error(
-        "Error adding project:",
-        error.response ? error.response.data : error.message
-      );
+       console.error("Error adding project:", error);
      }
   }
 
@@ -77,25 +80,25 @@ const Project = () => {
       <div className="text-3xl py-3 text-center">Project List</div>
       <div>
         {projectList.map((p) => (
-          <div className="flex flex-row gap-2 text-2xl border-black border-2  m-1 p-2 justify-between items-center">
-            <div id={p._id} className="flex flex-row gap-10 items-center">
-              <div>{p.project_name}</div>
+          <div key={p?._id} className="flex flex-row gap-2 text-2xl border-black border-2  m-1 p-2 justify-between items-center">
+            <div className="flex flex-row gap-10 items-center">
+              <div>{p?.project_name}</div>
               <img
-                src={p.photo}
-                alt={p.project_name}
+                src={p?.photo}
+                alt={p?.project_name}
                 width={200}
                 height={200}
               />
               <div>
-                <a href={p.github}>Github</a>
+                <a href={p?.github}>Github</a>
               </div>
               <div>
-                <a href={p.host}>Host</a>
+                <a href={p?.host}>Host</a>
               </div>
-              <div>{p.description}</div>
+              <div>{p?.description}</div>
             </div>
             <button
-              onClick={() => handleDelete(p.project_name)}
+              onClick={() => handleDelete(p?.project_name)}
               className="bg-red-400 p-1"
             >
               Delete
@@ -103,6 +106,8 @@ const Project = () => {
           </div>
         ))}
       </div>
+
+      
       <div className="text-3xl py-3 text-center">Add Project</div>
       <div>
         <form
