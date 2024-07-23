@@ -8,7 +8,7 @@ const Project = () => {
     const getProjects = async () => {
       try {
         const response = await axios.get(
-          "https://portfolio-new-ashen-kappa.vercel.app/project"
+          "https://portfolio-new-rust-ten.vercel.app/project"
         );
         console.log(response.data);
         if (response.data.message === "ok") {
