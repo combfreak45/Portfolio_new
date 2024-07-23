@@ -16,7 +16,7 @@ const Project = () => {
      
     try {
         const project = await axios.get(
-          "https://portfolio-new-rust-ten.vercel.app/project"
+          "https://portfolio-new-arjits-projects-4f88e43c.vercel.app/project"
         );
         setProjectList(project.data.projects)
     } catch (error) {
@@ -29,7 +29,7 @@ const Project = () => {
   const handleDelete = async (project_name) => {
     try {
       await axios.delete(
-        `https://portfolio-new-rust-ten.vercel.app/project/${project_name}`
+        `https://portfolio-new-arjits-projects-4f88e43c.vercel.app/project/${project_name}`
       );
       setProjectList((prevProject) => prevProject.filter((s) => s.project_name !== project_name));
 
@@ -54,7 +54,7 @@ const Project = () => {
 
      try {
        const response = await axios.post(
-         "https://portfolio-new-rust-ten.vercel.app/project",
+         "https://portfolio-new-arjits-projects-4f88e43c.vercel.app/project",
          formData,
          {
            headers: { "Content-Type": "multipart/form-data" },
