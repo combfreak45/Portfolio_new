@@ -41,14 +41,17 @@ const Header = () => {
       <div>
         {visible ? (
           <div className="flex flex-col  gap-5  mx-5 py-4 px-10 rounded-xl text-lg font-bold text-white">
+            <div className="hover:cursor-pointer">
+              <Link to="/experience">Experience</Link>
+            </div>
             <div className="hover:cursor-pointer ">
-              <Link to="/portfolio/skill">Skills</Link>
+              <Link to="/skill">Skills</Link>
             </div>
             <div className="hover:cursor-pointer">
-              <Link to="/portfolio/project">Projects</Link>
+              <Link to="/project">Projects</Link>
             </div>
             <div className="hover:cursor-pointer">
-              <Link to="/portfolio/contact">Contact Me</Link>
+              <Link to="/contact">Contact Me</Link>
             </div>
           </div>
         ) : (
