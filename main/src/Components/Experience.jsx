@@ -43,10 +43,10 @@ const Experience = () => {
               <div className="text-xl sm:text-3xl font-bold">
                 {item.company_name}
               </div>
-              <div className="w-20  text-center text-white bg-black rounded-md  hover:scale-125">
+              <div className="w-[10rem]  text-center text-white bg-black rounded-md  hover:scale-125">
                 <h2>{item.role}</h2>
               </div>
-              <div className="w-20  text-center text-white bg-black rounded-md  hover:scale-125">
+              <div className="w-[10em]  text-center text-white bg-black rounded-md  hover:scale-125">
                 <h2>{item.duration}</h2>
               </div>
               <div className="font-thin  rounded-md p-2 ">
