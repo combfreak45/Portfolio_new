@@ -9,7 +9,9 @@ const SkillList = () => {
   useEffect(() => {
     const fetchSkills = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/skill");
+        const response = await axios.get(
+          "https://portfolio-new-rust-ten.vercel.app/skill"
+        );
         setSkill(response.data.skills);
       } catch (error) {
         console.error("Error fetching skills:", error);
@@ -21,7 +23,9 @@ const SkillList = () => {
 
    const deleteSkill = async (skill) =>{
     try {
-        await axios.delete(`http://localhost:5000/skill/${skill}`);
+        await axios.delete(
+          `https://portfolio-new-rust-ten.vercel.app/skill/${skill}`
+        );
         setSkill((prevSkill) => prevSkill.filter((s) => s.skill !== skill));
     } catch (error) {
         console.log(error);
@@ -30,9 +34,12 @@ const SkillList = () => {
 
    const handleAddSkill = async () => {
      try {
-       const response = await axios.post("http://localhost:5000/skill", {
-         skill: newskill,
-       });
+       const response = await axios.post(
+         "https://portfolio-new-rust-ten.vercel.app/skill",
+         {
+           skill: newskill,
+         }
+       );
 
        setSkill((prevSkills) => [...prevSkills, response.data.skill]);
 
