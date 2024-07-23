@@ -9,6 +9,7 @@ app.use(express.json());
 const cors = require('cors')
 require("dotenv").config();
 const bodyParser = require("body-parser");
+const experienceRoute = require("./routes/experienceRoutes");
 connect()
 app.use(
   cors({
@@ -28,6 +29,7 @@ app.get('/',(req,res)=>{
 })
 app.use('/skill',skillRouter)
 app.use('/project',projectRoute)
+app.use('/experience',experienceRoute)
 
 mongoose.connection.once("open", () => {
   console.log("connected to mongoose");
